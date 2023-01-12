@@ -1,6 +1,7 @@
 import express, { ErrorRequestHandler, Express } from "express";
 import helmet from "helmet";
 import { PORT } from "./src/config";
+import { errorHandler } from "./src/controllers/error.controller";
 import { runDatabase } from "./src/database";
 import { limitByRoles, tokenAuthentication } from "./src/middlewares/security.middleware";
 import { catalogRouter } from "./src/routes/catalog.route";
@@ -9,22 +10,16 @@ import { productRouter } from "./src/routes/product.route";
 
 const app: Express = express();
 
-const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  console.error(err);
-  return res.status(500).send(err.message);
-}
-
 app.use(express.json());
 app.use(helmet());
 
 app.use(tokenAuthentication());
 app.use(limitByRoles());
-
 app.use('/health', healthRouter);
 app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
 
-app.use(errorHandler);
+app.use(errorHandler());
 
 runDatabase()
   .then(() => {
