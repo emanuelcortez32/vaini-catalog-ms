@@ -10,7 +10,6 @@ import {
 
 export const errorHandler =
   (): ErrorRequestHandler => (err, req, res, next) => {
-    console.log(err.name);
     switch (err.name) {
       case "NotFoundError":
         return res.status(404).json(createErrorResponseNotFound(err));

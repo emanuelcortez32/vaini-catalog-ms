@@ -12,6 +12,6 @@ export const getCatalogById = async (idCatalog: string) => {
 }
 
 export const getCatalogByOwner = async (ownerId: string) => {
-    const catalog = Catalog.findOne({ownerId}).orFail(() => { throw new Error('Catalog not found')});
+    const catalog = Catalog.find({ownerId}).orFail(() => { throw new Error('Catalog not found')});
     return catalog;
 }

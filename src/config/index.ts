@@ -14,7 +14,7 @@ const castStringToBoolean = (value?: string): boolean => {
 }
 
 export const PORT = castStringToNumber(process.env.PORT) || 8080;
-export const DB_HOST = process.env.DB_HOST || 'localhost';
-export const DB_PORT = process.env.DB_PORT || 27017;
-export const DB_NAME = process.env.DB_NAME || 'vaini';
+export const DB_NAME = process.env.DB_NAME || 'vaini-catalog';
+export const DB_USER = process.env.DB_USER;
+export const DB_PASSWORD = process.env.DB_PASSWORD;
 export const TOKEN_SECRET = process.env.TOKEN_SECRET || "";

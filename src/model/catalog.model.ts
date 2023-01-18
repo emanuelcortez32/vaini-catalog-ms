@@ -1,7 +1,8 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 import { IProduct, productSchema } from './product.model';
 
 export interface ICatalog {
+    _id: any,
     title: string,
     link?: string,
     description?: string,
